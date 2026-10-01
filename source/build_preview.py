@@ -14,14 +14,14 @@ LIVE = 'https://www.splithaus.com'
 # "Coming soon" in this preview so the full structure is visible. The real /blog lists published posts only.
 POSTS = [
     # n, slug, topic, image, alt, short title for placeholder cards
-    (1, 'how-to-share-a-vacation-home-with-family', 'calendar', 'share.png', 'A lake house with a dock and canoes on calm water', None),
+    (1, 'how-to-share-a-vacation-home-with-family', 'calendar', 'share.webp', 'A lake house with a dock and canoes on calm water', None),
     (5, 'who-gets-the-fourth-of-july', 'calendar', None, None, 'Who gets the Fourth of July? A holiday rotation example'),
     (8, 'when-one-family-never-uses-the-vacation-home', 'calendar', None, None, 'When one family never uses the house'),
     (10, 'vacation-home-calendar-template', 'calendar', None, None, 'Replacing the family spreadsheet: a vacation home calendar template'),
-    (2, 'family-cabin-rules-template', 'rules', 'rules.png', 'A cabin door with a checklist, a key, and a pet bed', None),
+    (2, 'family-cabin-rules-template', 'rules', 'rules.webp', 'A cabin door with a checklist, a key, and a pet bed', None),
     (6, 'shared-vacation-home-agreement-calendar', 'rules', None, None, 'The calendar clauses of a shared vacation home agreement'),
     (9, 'annual-vacation-home-meeting-agenda', 'rules', None, None, 'Running the annual vacation home meeting'),
-    (4, 'inheriting-a-vacation-home-with-siblings', 'family', 'siblings.png', 'A beach house with three doors and a row of chairs facing the sea', None),
+    (4, 'inheriting-a-vacation-home-with-siblings', 'family', 'siblings.webp', 'A beach house with three doors and a row of chairs facing the sea', None),
     (7, 'how-to-share-a-vacation-house-with-friends', 'family', None, None, 'How to share a vacation house with friends'),
     (11, 'get-every-household-involved-shared-house', 'family', None, None, 'Getting every household to take part'),
     (12, 'five-generations-one-house', 'family', None, None, 'Five generations, one house'),
