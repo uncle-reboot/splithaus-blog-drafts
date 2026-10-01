@@ -119,6 +119,8 @@ def parse(path):
     js = m.group(1)
     js = re.sub(r'(\n\s*)(\w+):', r'\1"\2":', js)
     js = re.sub(r'\{ name:', r'{ "name":', js)
+    js = re.sub(r'\{ src:', r'{ "src":', js)
+    js = re.sub(r', alt:', r', "alt":', js)
     js = re.sub(r',(\s*[}\]])', r'\1', js)
     return json.loads(js), s[m.end():]
 
