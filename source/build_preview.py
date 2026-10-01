@@ -112,6 +112,7 @@ section.topic p.d{margin:.5rem 0 0;color:var(--text-muted);max-width:65ch}
 .part{font-size:.875rem;color:var(--muted-fg);margin:0 0 1.25rem}
 .author{margin-top:3rem;padding:1.25rem;border:1px solid var(--border);background:rgb(250 246 239 / .5);border-radius:1rem}.author p{margin:.5rem 0 0;color:var(--navy)}.author p.label{margin:0;color:var(--terra-deep)}
 .card p.by{margin-top:.75rem;font-size:.75rem}
+.diagram{margin:2rem 0}.diagram img{display:block;margin:0 auto;width:auto;max-width:100%;height:auto;border:1px solid var(--border);border-radius:1rem;background:#fff;box-shadow:var(--elev-card)}.diagram figcaption{max-width:28rem;margin:.5rem auto 0;text-align:center;font-size:.875rem;line-height:1.5rem;color:var(--muted-fg)}
 .checks li{margin:8px 0}
 footer.f{margin-top:2.5rem;font-size:.875rem}
 '''
@@ -171,7 +172,12 @@ def fix_links(h, prefix):
         if u.startswith('/'):
             return f'href="{LIVE}{u}"'
         return m.group(0)
-    return re.sub(r'href="([^"]+)"', fix, h)
+    h = re.sub(r'href="([^"]+)"', fix, h)
+    h = h.replace('src="/blog/images/', f'src="{prefix}images/')
+    # Markdown image alone in a paragraph -> diagram with caption from its title (mirrors mdx-components img).
+    h = re.sub(r'<p><img alt="([^"]*)" src="([^"]+)" title="([^"]*)" ?/?></p>',
+               r'<figure class="diagram"><img alt="\1" src="\2" loading="lazy"><figcaption>\3</figcaption></figure>', h)
+    return h
 
 
 os.makedirs(OUT, exist_ok=True)
