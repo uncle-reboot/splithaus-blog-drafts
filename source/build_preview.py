@@ -34,6 +34,18 @@ TOPICS = {
     'tools': ('Choosing a tool', 'When a shared calendar is enough, and when a family wants more.', None),
 }
 START_HERE = 'how-to-share-a-vacation-home-with-family'
+import csv
+SLOT = {r['slug']: r['slot'] for r in csv.DictReader(open('/home/general/splithaus_run/content/splithaus-content-tracker.csv'))}
+AUTHOR_ROLE = 'Founder, SplitHaus'
+
+
+def when(slug):
+    s = SLOT.get(slug, '')
+    return 'Publishes on launch day' if s == 'Launch' else f'Publishes {s.lower()} after launch' if s else 'Not yet scheduled'
+
+
+def byline(slug, fm):
+    return f'By {e(fm["author"]["name"])}<span style="margin:0 8px">&middot;</span>{when(slug)}'
 HUB_FAQ = [
     ('What is the simplest way to share a vacation home?',
      'For two or three groups, a rotation of equal blocks with a release date for unused time is the easiest to explain and keep track of.',
@@ -86,7 +98,7 @@ section.topic p.d{margin:4px 0 0;color:var(--muted)}
 .cta p{margin:0 0 18px;color:#dfe7e7}.btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:600}.btn:hover{color:#fff;background:#d4775b}
 .related{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}.related h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:1.5rem;margin:0}
 .part{font-size:14px;color:var(--muted);margin:0 0 18px}
-footer.f{margin-top:40px;font-size:14px}
+\n.card p.by{margin-top:10px;font-size:13px;color:var(--muted)}\n.author{margin-top:48px;border-top:1px solid var(--line);padding-top:20px}.author p{margin:4px 0 0}\nfooter.f{margin-top:40px;font-size:14px}
 '''
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">'
 BANNER = '<div class="banner">Draft preview for review. Not published. Not indexed.</div>'
@@ -127,7 +139,7 @@ def card(slug, prefix, feature=False):
         pic = f'<img src="{prefix}images/{img}" alt="{e(alt)}" loading="lazy">' if img else '<span class="ph"></span>'
         cls = 'card feature' if feature else 'card'
         return (f'<a class="{cls}" href="{prefix}{slug}/">{pic}<div class="t"><span class="pill">{e(TOPICS[topic][0])}</span>'
-                f'<h3>{e(fm["title"])}</h3><p>{e(fm["description"])}</p></div></a>')
+                f'<h3>{e(fm["title"])}</h3><p>{e(fm["description"])}</p><p class="by">{byline(slug, fm)}</p></div></a>')
     return (f'<div class="card soon"><div class="t"><span class="pill">Coming soon</span>'
             f'<h3>{e(short)}</h3></div></div>')
 
@@ -166,12 +178,13 @@ for slug, (fm, body) in drafts.items():
     related = f'<section class="related"><h2>Related guides</h2><div class="grid">{"".join(card(s, "../") for s in rel)}</div></section>' if rel else ''
     art = (f'<article class="wrap"><nav class="crumb" aria-label="Breadcrumb"><a href="{LIVE}/">SplitHaus</a><span>/</span>'
            f'<a href="../">Guides</a><span>/</span><a href="../#{topic}">{e(tname)}</a></nav>'
-           f'<header><h1>{e(fm["title"])}</h1><p class="meta">By {e(fm["author"]["name"])}<span style="margin:0 8px">&middot;</span>Draft, not yet published</p></header>'
+           f'<header><h1>{e(fm["title"])}</h1><p class="meta">{byline(slug, fm)}</p></header>'
            f'<figure><img src="../images/{img}" alt="{e(alt)}" width="1024" height="576"></figure>'
            f'{part}'
            f'<section class="short" aria-label="Short answer"><p class="label">Short answer</p><p class="a">{e(fm["summary"])}</p></section>'
            f'<nav class="toc" aria-label="On this page"><p class="label">On this page</p><ol>{toc}</ol></nav>'
-           f'<div class="body">{h}</div>{related}'
+           f'<div class="body">{h}</div>'
+           f'<aside class="author"><p class="label">About the author</p><p><strong>{e(fm["author"]["name"])}</strong>, {e(AUTHOR_ROLE)}</p></aside>{related}'
            f'<footer class="f"><a href="../">All guides</a></footer></article>')
     os.makedirs(f'{OUT}/{slug}', exist_ok=True)
     open(f'{OUT}/{slug}/index.html', 'w').write(page(fm['title'] + ' | SplitHaus', fm['description'], art, 1))
