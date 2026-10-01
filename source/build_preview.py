@@ -230,7 +230,7 @@ hub = (f'<main class="wrap wide"><nav class="crumb" aria-label="Breadcrumb"><a h
        f'<p class="meta" style="margin-top:32px"><a href="review/">Review page for Matt and Dan</a>. Preview note: grey "Coming soon" cards show the planned structure. The live site lists only published guides.</p>'
        f'</main>')
 open(f'{OUT}/index.html', 'w').write(page('Guides to sharing a vacation home | SplitHaus',
-                                          'Practical guides for families who share a vacation home: splitting the calendar, house rules, and family situations.', hub, 0))
+                                          'Practical guides for families and friends who share a vacation home: splitting the calendar, house rules, and the situations that come up over the years.', hub, 0))
 # ---- review page for Matt and Dan
 launch = [s for s in drafts if SLOT.get(s) == 'Launch']
 rows = ''.join(
