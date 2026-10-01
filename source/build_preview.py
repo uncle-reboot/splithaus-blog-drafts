@@ -35,7 +35,7 @@ TOPICS = {
 }
 START_HERE = 'how-to-share-a-vacation-home-with-family'
 import csv
-SLOT = {r['slug']: r['slot'] for r in csv.DictReader(open('/home/general/splithaus_run/content/splithaus-content-tracker.csv'))}
+SLOT = {r['slug']: r['slot'] for r in csv.DictReader(open('/home/general/splithaus_run/content/splithaus-content-tracker.csv'))} if os.path.exists('/home/general/splithaus_run/content/splithaus-content-tracker.csv') else {}
 AUTHOR_BIO = 'Dan co-founded SplitHaus and has shared a family beach house across five generations.'
 
 
