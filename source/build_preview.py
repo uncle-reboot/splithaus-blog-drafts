@@ -36,7 +36,7 @@ TOPICS = {
 START_HERE = 'how-to-share-a-vacation-home-with-family'
 import csv
 SLOT = {r['slug']: r['slot'] for r in csv.DictReader(open('/home/general/splithaus_run/content/splithaus-content-tracker.csv'))}
-AUTHOR_ROLE = 'SplitHaus'
+AUTHOR_BIO = 'Dan co-founded SplitHaus and has shared a family beach house across five generations.'
 
 
 def when(slug):
@@ -184,7 +184,7 @@ for slug, (fm, body) in drafts.items():
            f'<section class="short" aria-label="Short answer"><p class="label">Short answer</p><p class="a">{e(fm["summary"])}</p></section>'
            f'<nav class="toc" aria-label="On this page"><p class="label">On this page</p><ol>{toc}</ol></nav>'
            f'<div class="body">{h}</div>'
-           f'<aside class="author"><p class="label">About the author</p><p><strong>{e(fm["author"]["name"])}</strong> at {e(AUTHOR_ROLE)}</p></aside>{related}'
+           f'<aside class="author"><p class="label">About the author</p><p>{e(AUTHOR_BIO)}</p></aside>{related}'
            f'<footer class="f"><a href="../">All guides</a></footer></article>')
     os.makedirs(f'{OUT}/{slug}', exist_ok=True)
     open(f'{OUT}/{slug}/index.html', 'w').write(page(fm['title'] + ' | SplitHaus', fm['description'], art, 1))
