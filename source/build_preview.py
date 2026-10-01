@@ -15,8 +15,8 @@ LIVE = 'https://www.splithaus.com'
 POSTS = [
     # n, slug, topic, image, alt, short title for placeholder cards
     (1, 'how-to-share-a-vacation-home-with-family', 'calendar', 'share.webp', 'A lake house with a dock and canoes on calm water', None),
-    (5, 'who-gets-the-fourth-of-july', 'calendar', None, None, 'Who gets the Fourth of July? A holiday rotation example'),
-    (8, 'when-one-family-never-uses-the-vacation-home', 'calendar', None, None, 'When one family never uses the house'),
+    (5, 'who-gets-the-fourth-of-july', 'calendar', 'fourth.webp', 'A lakeside cabin porch with red, white, and blue bunting and a table set for dinner', None),
+    (8, 'when-one-family-never-uses-the-vacation-home', 'calendar', 'unused.webp', 'A porch with four chairs, one empty and set a little apart, by an open front door', None),
     (10, 'vacation-home-calendar-template', 'calendar', None, None, 'Replacing the family spreadsheet: a vacation home calendar template'),
     (2, 'family-cabin-rules-template', 'rules', 'rules.webp', 'A cabin door with a checklist, a key, and a pet bed', None),
     (6, 'shared-vacation-home-agreement-calendar', 'rules', None, None, 'The calendar clauses of a shared vacation home agreement'),
@@ -98,10 +98,11 @@ section.topic p.d{margin:4px 0 0;color:var(--muted)}
 .cta p{margin:0 0 18px;color:#dfe7e7}.btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:600}.btn:hover{color:#fff;background:#d4775b}
 .related{margin-top:56px;border-top:1px solid var(--line);padding-top:28px}.related h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:1.5rem;margin:0}
 .part{font-size:14px;color:var(--muted);margin:0 0 18px}
-\n.card p.by{margin-top:10px;font-size:13px;color:var(--muted)}\n.author{margin-top:48px;border-top:1px solid var(--line);padding-top:20px}.author p{margin:4px 0 0}\nfooter.f{margin-top:40px;font-size:14px}
+\n.card p.by{margin-top:10px;font-size:13px;color:var(--muted)}\n.author{margin-top:48px;border-top:1px solid var(--line);padding-top:20px}.author p{margin:4px 0 0}\n.checks li{margin:8px 0}
+footer.f{margin-top:40px;font-size:14px}
 '''
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">'
-BANNER = '<div class="banner">Draft preview for review. Not published. Not indexed.</div>'
+BANNER = '<div class="banner">Draft preview for Matt and Dan to review. Not published. Not indexed.</div>'
 e = html.escape
 
 
@@ -210,8 +211,38 @@ hub = (f'<main class="wrap wide"><nav class="crumb" aria-label="Breadcrumb"><a h
        f'<section class="faq"><h2>Common questions</h2>{faq}</section>'
        f'<section class="cta"><h2>Make your own house plan</h2><p>The free Shared House Playbook walks your family through these decisions '
        f'one question at a time and turns the answers into a one-page plan.</p><a class="btn" href="{LIVE}/playbook">Open the Playbook</a></section>'
-       f'<p class="meta" style="margin-top:32px">Preview note: grey "Coming soon" cards show the planned structure. The live site lists only published guides.</p>'
+       f'<p class="meta" style="margin-top:32px"><a href="review/">Review page for Matt and Dan</a>. Preview note: grey "Coming soon" cards show the planned structure. The live site lists only published guides.</p>'
        f'</main>')
 open(f'{OUT}/index.html', 'w').write(page('Guides to sharing a vacation home | SplitHaus',
                                           'Practical guides for families who share a vacation home: splitting the calendar, house rules, and family situations.', hub, 0))
-print('built', len(drafts), 'articles + hub')
+# ---- review page for Matt and Dan
+launch = [s for s in drafts if SLOT.get(s) == 'Launch']
+rows = ''.join(
+    f'<tr><td>{meta[s][0]}</td><td><a href="../{s}/">{e(drafts[s][0]["title"])}</a></td><td>{e(TOPICS[meta[s][1]][0])}</td>'
+    f'<td>{len(re.findall(r"[A-Za-z0-9]+", drafts[s][1]))}</td><td>&#9744;</td><td>&#9744;</td></tr>' for s in launch)
+review = f'''<main class="wrap wide"><nav class="crumb"><a href="../">Guides hub</a><span>/</span>Review</nav>
+<h1>Launch batch: review</h1>
+<p class="lead">Five guides publish together on launch day. Each one needs approval from both Matt and Dan before it goes live.
+Dan's approval matters because every guide carries his byline.</p>
+<section class="topic" style="margin-top:32px"><h2>The five launch guides</h2>
+<table><thead><tr><th>#</th><th>Guide</th><th>Topic</th><th>Words</th><th>Matt</th><th>Dan</th></tr></thead><tbody>{rows}</tbody></table>
+<p class="meta">Reply in chat with "approved" or your changes for each number. Approvals are recorded in the content tracker.</p></section>
+<section class="topic"><h2>What to check in each guide</h2><ol class="checks">
+<li><strong>Sounds like Dan.</strong> Would Dan say this? Change anything that does not sound like him. His name is on it.</li>
+<li><strong>True to how families share a house.</strong> Flag anything that does not match real life, including Dan's family's house.</li>
+<li><strong>No promises.</strong> Nothing should promise fairness, fewer arguments, a fuller house, savings, or speed.</li>
+<li><strong>No legal, tax, or money advice.</strong> Ownership, estates, and taxes are pointed to a lawyer or tax advisor.</li>
+<li><strong>No product claims or pricing.</strong> SplitHaus is not described or priced in these guides yet, on purpose.</li>
+<li><strong>The examples are clearly made up.</strong> Worked examples say they are hypothetical. No real family names, addresses, or dates.</li>
+<li><strong>The pictures.</strong> Each guide has an illustration. Say if any should change.</li>
+<li><strong>Anything missing.</strong> A question a real family would ask that the guide does not answer.</li>
+</ol></section>
+<section class="topic"><h2>Already checked</h2><p class="d">Every guide passes the blog's own format and content checks, uses only approved claims,
+has a short answer and FAQ, links to at least two other guides and to the Playbook, and carries the approved author line:
+"Dan co-founded SplitHaus and has shared a family beach house across five generations."</p></section>
+<section class="topic"><h2>After launch</h2><p class="d">One guide a week, reviewed the same way in monthly batches. Next up: SplitHaus vs a shared Google Calendar,
+which needs Matt's example details and product screenshots first.</p></section>
+</main>'''
+os.makedirs(f'{OUT}/review', exist_ok=True)
+open(f'{OUT}/review/index.html', 'w').write(page('Launch review | SplitHaus guides', 'Review page for the launch batch.', review, 1))
+print('built', len(drafts), 'articles + hub + review page')

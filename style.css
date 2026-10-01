@@ -38,4 +38,5 @@ section.topic p.d{margin:4px 0 0;color:var(--muted)}
 
 .card p.by{margin-top:10px;font-size:13px;color:var(--muted)}
 .author{margin-top:48px;border-top:1px solid var(--line);padding-top:20px}.author p{margin:4px 0 0}
+.checks li{margin:8px 0}
 footer.f{margin-top:40px;font-size:14px}
