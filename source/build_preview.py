@@ -2,7 +2,7 @@
 import re, json, html, os, shutil, markdown
 SRC='/home/general/splithaus_run/content/drafts'
 OUT='/home/general/splithaus_run/content/site'
-IMG={'how-to-share-a-vacation-home-with-family':('share.png','A lake house with a dock beside blocks of color representing a shared calendar'),
+IMG={'how-to-share-a-vacation-home-with-family':('share.png','A lake house with a dock and canoes on calm water'),
      'family-cabin-rules-template':('rules.png','A cabin door with a checklist, a key, and a pet bed'),
      'inheriting-a-vacation-home-with-siblings':('siblings.png','A beach house with three doors and a row of chairs facing the sea')}
 ORDER=list(IMG)
