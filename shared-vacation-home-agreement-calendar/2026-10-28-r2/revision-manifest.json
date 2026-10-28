@@ -1,0 +1,24 @@
+{
+  "revision": "2026-10-28-r2",
+  "target_date": "2026-10-30",
+  "publication_authorized": false,
+  "sha256": {
+    "article.md": "c345795afe7ad94eb11178b2564a7b12e0ca2b15e78fa80a64def7a42278e0d9",
+    "article.mdx": "8781da6a9ad2070e311101f74f3a45c6c81cd40944733f539b8fa5b501c68a25",
+    "frontmatter.json": "a1c7bbd65813763cccbfd85b4052b85e1afec0825a4dffba98bea2237d9f5a3d",
+    "shared-vacation-home-agreement-calendar.webp": "e82094c3fe696135faddd6ab90d681e4706e4d3cffe86bff18a922862d427e5e",
+    "SEO-HANDOFF.md": "7f641240e61dbd0f4005a0b86d50d5740ed374d607d7963a7634bf018af4f482",
+    "app-pipeline-verification.json": "294b60c2aaf2672416c2466013a843b93f47daea3d04e8bad2a41a9c92725be5",
+    "preview.html": "1d2ada751cf3f8acfd49548ba21d47696cc7a849f24f0c7754e3617a5db15941",
+    "style.css": "d2a8df160b9cb913fc2c64862f98bb7ed76c6906792fa003af1b9555904fd399",
+    "build-review.py": "0daa6a564a718a2ea729e37a78fd1229304e1a807252edba36013a3cc9d70331"
+  },
+  "supersedes": "2026-10-28-r1, not submitted; TOC duplicate ordinal fixed. Article and hero unchanged.",
+  "image_provenance": {
+    "source": "https://v3b.fal.media/files/b/0ab03e97/r0HQrtUSLeenH-sNssfIh_TRPNXxFG.png",
+    "style_reference": "https://www.splithaus.com/blog/images/family-cabin-rules-template.webp",
+    "attempts": 1,
+    "rejected_assets": [],
+    "visual_qa": "No text, digits, people, UI; calm editorial style matching published reference. No material defect found by vision. Human approval pending."
+  }
+}
