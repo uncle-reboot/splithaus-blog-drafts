@@ -1,0 +1,12 @@
+{
+  "frontmatter_parsed": true,
+  "mdx_evaluated": true,
+  "strict_production_component_render": true,
+  "prose_policy_lint_errors": 0,
+  "rejection_tests": 3,
+  "publication_eligible": false,
+  "draft": true,
+  "render_bytes": 15028,
+  "pipeline": "/home/general/splithaus_run/blog-impl/beach-mgr/apps/splithaus",
+  "production_frontmatter_matches_fetched_staging": true
+}
